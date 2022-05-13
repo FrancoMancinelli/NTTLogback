@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- INFO DEL PROYECTO -->
+	<groupId>nttdata</groupId>
+	<artifactId>nttdatacenters-logback-t1-francoM</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>NTT Data - SLF4 + Logback</name>
+
+	<!-- PROPIEDADES DEL PROYECTO -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.v>1.6.6</slf4j.v>
+		<logback.v>1.0.7</logback.v>
+	</properties>
+
+	<!-- DEPENDENCIAS DEL PROYECTO -->
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.v}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.v}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.v}</version>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,57 @@
+<configuration debug="false" scan="true"
+	scanPeriod="20 seconds">
+
+	<!-- VARIABLES -->
+	<!-- Variable de la fecha actual en formato dd-mm-yyy -->
+	<timestamp key="currentDate" datePattern="dd-MM-yyyy" />
+
+
+	<!-- ROLLINGFILEAPPENDER -->
+	<appender name="TuberiaLogRA"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<!-- Ubicación donde desembocará mi tuberia -->
+		<file>.//assets//logFrancoM-${currentDate}.log</file>
+		<append>true</append>
+		<immediateFlush>false</immediateFlush>
+
+		<!-- Política con la que troceamos o gestionamos el fichero -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>.//assets//logFrancoM-[${currentDate}].%i.log
+			</fileNamePattern>
+
+			<!-- Cantidad de ficheros a trocear (Mínimo y Máximo) -->
+			<minIndex>1</minIndex>
+			<maxIndex>3</maxIndex>
+		</rollingPolicy>
+
+		<!-- Política que indica a partir de que tamaño aplicar la política de 
+			troceado -->
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50KB</maxFileSize>
+		</triggeringPolicy>
+
+		<!-- La manera en la que se imprime la información al fichero -->
+		<encoder
+			class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			
+			<!-- En este caso, se aplica un layout personalizado -->
+			<layout class="utils.MyLayout">
+				<prefix>FrancoMancinelliLayout</prefix>
+				<provincia>Malaga</provincia>
+				<currD>${currentDate}</currD>
+				<printThreadName>true</printThreadName>
+			</layout>
+			
+		</encoder>
+	</appender>
+
+
+	<!-- ROOT LOGGER -->
+	<root level="debug">
+		<appender-ref ref="TuberiaLogRA" />
+	</root>
+
+</configuration>
