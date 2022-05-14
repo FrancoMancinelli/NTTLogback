@@ -33,7 +33,7 @@ public class MainApp {
 	public static void main(String[] args) {
 		LOG.info("INICIA LA APLICACION");
 		
-		List<Persona> arrayPersonas = new ArrayList<Persona>(); //Creo mi array de personas
+		List<Persona> arrayPersonas = new ArrayList<Persona>(); /*Creación de un array de personas*/
 		
 		System.out.println("       >>>>            BIENVENID@ AL BANCO PICASSO           <<<<");
 		String resMenuIn;
@@ -56,7 +56,7 @@ public class MainApp {
 			LOG.debug("RESPUESTA EN MENU INICIAL: {}", resMenuIn);
 			switch (resMenuIn) {
 			
-			//Registrar nuevo usuario
+			/*Opción de Registrar nuevo usuario*/
 			case "A":
 				LOG.info("EL USUARIO DECIDE REGISTRARSE");
 				System.out.println("\n       >>>>>>>>>>>>>>>>>>> AREÁ DE REGISTRO <<<<<<<<<<<<<<<<<<<<<\n");
@@ -69,7 +69,7 @@ public class MainApp {
 				
 				LOG.info("IMPRIME AREA DE REGISTRO");
 				
-				//Pedirá los datos necesarios al usuario
+				/*Pedirá los datos necesarios al usuario*/
 				System.out.print("• »» Nombre: ");
 				nom = String.valueOf(sc.next());
 				LOG.debug("NOMBRE INDICADO: {}", nom);
@@ -87,13 +87,13 @@ public class MainApp {
 				LOG.debug("SUELDO INDICADO: {}", sueldo);
 
 				
-				CuentaCorriente c = new CuentaCorriente(contador++, null); //Creara una cuenta corriente base que sera igual para todos
-				arrayPersonas.add(new Persona(nom, apell, dni, sueldo, c)); //Creo mi persona con los datos introducidos, le asigno la cuenta y la añado a mi array				
+				CuentaCorriente c = new CuentaCorriente(contador++, null); /*Creara una cuenta corriente base que sera igual para todos*/
+				arrayPersonas.add(new Persona(nom, apell, dni, sueldo, c)); /*Crea la persona con los datos introducidos, le asigno la cuenta y la añado a mi array*/				
 				System.out.println("\n       >>>>   Tu cuenta bancaría ha sido creada con éxito    <<<<");
 				LOG.info("SE CREA LA CUENTA CORRIENTE DEL USUARIO CORRECTAMENTE");
 				break;
 			
-			//Iniciar sesión
+			/*Opción de Iniciar sesión*/
 			case "B":
 				LOG.info("EL USUARIO DECIDE INICIAR SESION");
 				int respAux = 0;
@@ -109,17 +109,19 @@ public class MainApp {
 					int resp = 0;
 					int i = 1;
 					
+					/*Recorre mi array de personas y las imprime en orden*/
 					for(Persona aux : arrayPersonas) {
-						System.out.println(i+" »» " + aux); //Recorre mi array de personas y las imprime en orden
+						System.out.println(i+" »» " + aux); 
 						i++;
 					}
 					
-						System.out.print("\n• »» Respuesta: "); //Solicito al usuario que indique una cuenta
+						System.out.print("\n• »» Respuesta: "); //Se solicita al usuario que indique una cuenta
 						resp = Integer.parseInt(sc.next());
 						respAux = resp;
 						LOG.debug("RESPUESTA DEL USUARIO AL INDICAR UNA CUENTA LISTADA: {}", resp);
 						
-						if(resp >= 1 && resp <= arrayPersonas.size()) { //Si el valor es una opcion de la lista
+						/*En caso de que el valor sea una opción de la lista*/
+						if(resp >= 1 && resp <= arrayPersonas.size()) { 
 						Persona seleccionada = arrayPersonas.get(resp - 1);
 						LOG.info("EL USUARIO SELECCIONO LA CUENTA: {}", seleccionada.toString());
 
@@ -140,14 +142,14 @@ public class MainApp {
 
 								switch (resp2) {
 							
-								case "1": //Cobrar sueldo
+								case "1": /* Opción de Cobrar sueldo*/
 									System.out.println("\n       >>>>       Tu sueldo ha sido cobrado con éxito        <<<<");
 									LOG.info("EL USUARIO COBRA SU SUELDO");
 									LOG.debug("EL USUARIO ANTES DE COBRAR TENIA {} Y COBRO {}$", seleccionada.getCuenta().getSaldo(), seleccionada.getSueldo());
 									seleccionada.cobrarSueldo();
 									break;
 									
-								case "2": //Sacar pasta
+								case "2": /* Opción de Sacar pasta*/
 									System.out.print("• »» Cantidad a retirar: ");
 									double cantidad = Double.parseDouble(sc.next());
 									seleccionada.sacarDinero(cantidad);
@@ -155,7 +157,7 @@ public class MainApp {
 									LOG.debug("EL USUARIO RETIRO {}$", cantidad);
 									break;
 									
-								case "3": //Modificar Sueldo
+								case "3": /* Opción de Modificar Sueldo*/
 									System.out.print("• »» Nuevo sueldo: ");
 									double sueldoNuevo = Double.parseDouble(sc.next());
 									System.out.println("\n       >>>>      Tu sueldo ha sido modificado con éxito      <<<<");
@@ -164,12 +166,12 @@ public class MainApp {
 									seleccionada.actualizarSueldo(sueldoNuevo);
 									break;
 									
-								case "4": //Ver Info
+								case "4": /* Opción de Ver Info*/
 									seleccionada.verInfo();
 									LOG.info("EL USUARIO VE SU INFORMACION");
 									break;
 									
-								case "5": //Volver atrás
+								case "5": /* Opción de Volver atrás*/
 									System.out.println("\n       >>>>          Procediendo a cerrar la sesión          <<<<");
 									System.out.println("       >>>>         Has salido de la cuenta con éxito        <<<<");
 									LOG.info("EL USUARIO DECIDE VOLVER ATRAS DEL PANEL DE INTERACCION");
@@ -183,9 +185,9 @@ public class MainApp {
 
 								}
 								
-							}while (!resp2.equals("5")); //Si el usuario no sale, repetirá el menú para poder hacer otra acción
+							}while (!resp2.equals("5")); /*Si el usuario no sale, repetirá el menú para poder hacer otra acción*/
 							
-						}else { //Si el valor no es una opcion de la lista
+						}else { /*Si el valor no es una opcion de la lista*/
 							System.out.println("\n       >>>>        Su respuesta no se encuentra dentro       <<<<       ");
 							System.out.println("ERR0R! >>>>         de las posibles opciones (1 - "+arrayPersonas.size() +")         <<<< ERR0R!");
 							System.out.println("       >>>>               Vuelve a intentarlo                <<<<");
@@ -193,17 +195,17 @@ public class MainApp {
 						}
 					
 					
-				} else { //Si el array de personas esta vacio...
+				} else { /*Si el array de personas esta vacio...*/
 					System.out.println("\n       >>>>            No hay cuentas registradas            <<<<       ");
 					System.out.println("ERR0R! >>>>       Primero registra una cuenta y luego        <<<< ERR0R!");
 					System.out.println("       >>>>               vuelve a intentarlo                <<<<");
 					LOG.error("SE HA INTENTADO INICIAR SESION A UNA CUENTA, CUANDO AUN NO HAY NINGUNA REGISTRADA");
 				}
 
-				}while(!(respAux >= 1 && respAux <= arrayPersonas.size())); //Repite el menu inicial hasta que el usuairo introduzca una cuenta de las opciones
+				}while(!(respAux >= 1 && respAux <= arrayPersonas.size())); /*Repite el menu inicial hasta que el usuairo introduzca una cuenta de las opciones*/
 				break;
 				
-			//Borrar una cuenta
+			/*Opción de Borrar una cuenta*/
 			case "C":
 				LOG.info("EL USUARIO DECIDE BORRAR UNA CUENTA");
 				int respY = 0;
@@ -219,13 +221,14 @@ public class MainApp {
 
 					int i = 1;
 					
+					/*Recorre mi array de personas y las imprime en orden*/
 					for(Persona aux : arrayPersonas) {
-						System.out.println(i+" »» " + aux); //Recorre mi array de personas y las imprime en orden
+						System.out.println(i+" »» " + aux); 
 						i++;
 						}
 						LOG.info("SE IMPRIMEN LAS PERSONAS POR PANTALLA");
 					
-						System.out.print("\n• »» Respuesta: "); //Solicito al usuario que indique una cuenta
+						System.out.print("\n• »» Respuesta: "); /*Se solicita al usuario que indique una cuenta*/
 						int respue = Integer.parseInt(sc.next());
 						LOG.debug("EL USUARIO HA RESPONDIDO {} EN EL PANEL DE ELIMINACION", respue);
 						
@@ -259,14 +262,14 @@ public class MainApp {
 								}
 							}while(!sn.equals("S") && !sn.equals("N"));
 						
-						}else { //Si el valor no es una opcion de la lista
+						}else { /*Si el valor no es una opcion de la lista*/
 							System.out.println("\n       >>>>        Su respuesta no se encuentra dentro       <<<<       ");
 							System.out.println("ERR0R! >>>>         de las posibles opciones (1 - "+arrayPersonas.size() +")         <<<< ERR0R!");
 							System.out.println("       >>>>               Vuelve a intentarlo                <<<<");
 							LOG.error("EL USUARIO HA INDICADO UNA OPCIÓN INVALIDA DEL MENU BORRADO DE CUENTAS");
 						}
 							
-				} else { //Si el array de personas esta vacio...
+				} else { /*Si el array de personas esta vacio...*/
 					System.out.println("\n       >>>>            No hay cuentas registradas            <<<<       ");
 					System.out.println("ERR0R! >>>>       Primero registra una cuenta y luego        <<<< ERR0R!");
 					System.out.println("       >>>>               vuelve a intentarlo                <<<<");
@@ -274,13 +277,13 @@ public class MainApp {
 					break;
 				}
 				
-				//Repite el menu inicial hasta que el usuairo introduzca una numero de cuenta de las opciones
-				//Además si el usuario responde que SI o que NO a la confirmación de eliminar la cuenta
-				//también volvera al menú inicial
+				/*Repite el menu inicial hasta que el usuairo introduzca una numero de cuenta de las opciones
+				Además si el usuario responde que SI o que NO a la confirmación de eliminar la cuenta
+				también volvera al menú inicial*/
 				}while(!(respY >= 1 && respY <= arrayPersonas.size()) && !sn.equals("N") && !sn.equals("S")); 
 				break;
 				
-			//Salir del sistema
+			/*Opción de Salir del sistema*/
 			case "D":
 					System.out.print("\n  »» Has salido de la aplicación\n");
 					System.out.print("  »» Que tenga bonito día, vuelva pronto :)\n");
@@ -295,7 +298,7 @@ public class MainApp {
 			 			
 			}
 
-		} while (!"d".equals(resMenuIn) && !"D".equals(resMenuIn)); //Mientras la respuesta del usuario no sea D (SALIR)
+		} while (!"d".equals(resMenuIn) && !"D".equals(resMenuIn)); /*Mientras la respuesta del usuario no sea D (SALIR)*/
 
 	}
 
