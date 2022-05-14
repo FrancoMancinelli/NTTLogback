@@ -10,10 +10,26 @@ import org.slf4j.LoggerFactory;
 import models.CuentaCorriente;
 import models.Persona;
 
+/**
+ * Formación - Logback
+ * 
+ * Clase principal
+ * 
+ * @author Franco Emanuel Mancinelli
+ *
+ */
 public class MainApp {
 
+	/**
+	 * Instanciamiento de un Logger
+	 */
 	private static final Logger LOG = LoggerFactory.getLogger(MainApp.class);
 	
+	/**
+	 * Método principal
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		LOG.info("INICIA LA APLICACION");
 		
@@ -145,7 +161,7 @@ public class MainApp {
 									System.out.println("\n       >>>>      Tu sueldo ha sido modificado con éxito      <<<<");
 									LOG.info("EL USUARIO ACTUALIZA SU SUELDO");
 									LOG.debug("EL SUELDO ANTERIOR ERA {}$ Y EL NUEVO ES {}$", seleccionada.getSueldo(), sueldoNuevo);
-									seleccionada.subirSueldo(sueldoNuevo);
+									seleccionada.actualizarSueldo(sueldoNuevo);
 									break;
 									
 								case "4": //Ver Info
